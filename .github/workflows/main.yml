@@ -33,6 +33,10 @@ jobs:
         with:
             tag_name: ${{ github.ref }}
             release_name: Release ${{ github.ref }}
+            body: |
+              Changes in this Release
+              - First Change
+              - Second Change
             draft: true
             prerelease: false      
       
@@ -47,7 +51,7 @@ jobs:
           echo Add other actions to build,
           echo test, and deploy your project.
 
-     
+
   deployment-qa:
       needs: build
       runs-on: ubuntu-latest
