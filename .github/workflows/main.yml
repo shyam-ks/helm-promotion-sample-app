@@ -26,7 +26,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       - name: Create Release
-        id: create_release
+        id: create_release_pre
         uses: actions/create-release@v1
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -35,10 +35,9 @@ jobs:
             release_name: Release ${{ github.ref }}
             body: |
               Changes in this Release
-              - First Change
-              - Second Change
+              - Pre              
             draft: true
-            prerelease: false      
+            prerelease: true  
       
 
       # Runs a single command using the runners shell
@@ -59,3 +58,18 @@ jobs:
       steps:
         - name: deploy        
           run: echo Hello, QA Deploy!
+          
+        - name: Create Release
+          id: create_release
+          uses: actions/create-release@v1
+          env:
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          with:
+              tag_name: ${{ github.ref }}
+              release_name: Release ${{ github.ref }}
+              body: |
+                Changes in this Release
+                - First Change
+                - Second Change
+              draft: true
+              prerelease: false      
