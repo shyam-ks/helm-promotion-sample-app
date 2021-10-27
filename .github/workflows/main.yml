@@ -57,7 +57,7 @@ jobs:
       environment: QA
       steps:
         - name: deploy        
-          run: echo Hello, QA Deploy! ${{ GITHUB_SHA }}
+          run: echo Hello, QA Deploy! ${{ github.sha }}
           
         - name: Create Release
           id: create_release
@@ -81,7 +81,7 @@ jobs:
       environment: QA
       steps:
         - name: deploy        
-          run: echo Hello, QA Deploy! ${{ GITHUB_SHA }}
+          run: echo Hello, QA Deploy! ${{ github.sha }}
           
         - name: Create Release
           id: create_release
