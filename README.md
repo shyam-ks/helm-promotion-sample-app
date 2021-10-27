@@ -6,7 +6,7 @@ This is single application that has different configurations for 3 different env
 * For the [Staging](values-staging.yaml) environment
 * For the [Production](values-prod.yaml) environment
 
-The repository also contains several Codefresh pipelines
+The repository also contains several Codefresh pipelines ------------
 
 * [Build only pipeline](pipelines/0_build_only.yml)
 * [Basic deployment](pipelines/1_basic_deploy.yml)
