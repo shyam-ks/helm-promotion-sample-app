@@ -51,7 +51,7 @@ jobs:
           echo test, and deploy your project.
 
 
-  deployment-qa:
+  qa:
       needs: dev
       runs-on: ubuntu-latest
       environment: QA
@@ -59,8 +59,8 @@ jobs:
         - name: deploy        
           run: echo Hello, QA Deploy! ${{ github.sha }}
 
-  deployment-uat:
-      needs: deployment-qa
+  uat:
+      needs: qa
       runs-on: ubuntu-latest
       environment: UAT
       steps:
