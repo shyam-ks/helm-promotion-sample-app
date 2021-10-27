@@ -51,34 +51,18 @@ jobs:
           echo test, and deploy your project.
 
 
-  deployment-qa-aws:
+  deployment-qa:
       needs: dev
       runs-on: ubuntu-latest
       environment: QA
       steps:
         - name: deploy        
           run: echo Hello, QA Deploy! ${{ github.sha }}
-          
-        - name: Create Release
-          id: create_release
-          uses: actions/create-release@v1
-          env:
-              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          with:
-              tag_name: ${{ github.ref }}
-              release_name: Release ${{ github.ref }}
-              body: |
-                Changes in this Release
-                - First Change
-                - Second Change
-              draft: true
-              prerelease: false      
 
-
-  deployment-qa-az:
-      needs: dev
+  deployment-uat:
+      needs: deployment-qa
       runs-on: ubuntu-latest
-      environment: QA
+      environment: UAT
       steps:
         - name: deploy        
           run: echo Hello, QA Deploy! ${{ github.sha }}
@@ -97,3 +81,4 @@ jobs:
                 - Second Change
               draft: true
               prerelease: false 
+              
