@@ -92,8 +92,9 @@ jobs:
         - uses: azure/setup-helm@v1
         - name: version change
           run: |    
-            ls
+            
             cd master
+            ls
             pip install ruamel.yaml                    
             python3 ./utils/update-chart-version.py ./chart/sample-app/Chart.yaml 'version' ${{ env.CHART_VERSION }}
         - name: Sync Helm Repo
