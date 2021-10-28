@@ -1,7 +1,9 @@
 name: Sync Helm Repo
 on:
   push:
-    branches: [ master ]
+    paths:
+      - 'chart/**'     
+
 jobs:
   build:
     runs-on: ubuntu-latest
