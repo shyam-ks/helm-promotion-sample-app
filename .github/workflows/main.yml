@@ -83,12 +83,17 @@ jobs:
               prerelease: false 
         - uses: actions/checkout@v2
           with:
+            ref: 'master'
+            path: 'master'  
+        - uses: actions/checkout@v2
+          with:
             ref: 'gh-pages'
             path: 'package' 
         - uses: azure/setup-helm@v1
         - name: version change
           run: |    
             ls
+            cd master
             pip install ruamel.yaml                    
             python3 ./utils/update-chart-version.py ./chart/sample-app/Chart.yaml 'version' ${{ env.CHART_VERSION }}
         - name: Sync Helm Repo
