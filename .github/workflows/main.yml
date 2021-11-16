@@ -3,6 +3,7 @@
 name: App-1
 
 concurrency: prod-deploy
+  cancel-in-progress: true
   
   
 on:
