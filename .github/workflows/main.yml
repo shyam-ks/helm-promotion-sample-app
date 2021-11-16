@@ -62,6 +62,10 @@ jobs:
       runs-on: ubuntu-latest
       environment: QA
       steps:
+        - uses: actions/checkout@v2
+          with:
+            ref: ${{ github.event.pull_request.head.sha }}
+            path: 'master'        
         - name: deploy        
           run: echo Hello, QA Deploy! ${{ github.sha }}
         - name: Package
