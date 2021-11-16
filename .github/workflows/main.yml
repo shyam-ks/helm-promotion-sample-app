@@ -18,7 +18,16 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-
+  testaction:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ./.github/actions/package
+        id: test
+        with:
+          version: "0.0.0"
+          
+      
   # This workflow contains a single job called "build"
   dev:
     # The type of runner that the job will run on
