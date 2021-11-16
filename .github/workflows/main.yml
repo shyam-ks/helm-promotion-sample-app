@@ -64,6 +64,8 @@ jobs:
       steps:
         - name: deploy        
           run: echo Hello, QA Deploy! ${{ github.sha }}
+        - name: Package
+          run: sh package arg1   
 
   uat:
       needs: qa
