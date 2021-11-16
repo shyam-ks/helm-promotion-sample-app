@@ -3,10 +3,8 @@
 name: App-1
 
 concurrency:
-  group: environment-${{ github.ref }}
+  group:  App-1-${{ github.ref }}
   cancel-in-progress: true
-  
-  
   
 on:
   push:
