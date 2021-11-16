@@ -2,9 +2,8 @@
 
 name: App-1
 
-concurrency: 
-  group: ${{ github.head_ref }}
-  cancel-in-progress: true
+concurrency: prod-deploy
+  
   
 on:
   push:
