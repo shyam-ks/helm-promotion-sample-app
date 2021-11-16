@@ -2,7 +2,8 @@
 
 name: App-1
 
-concurrency: prod-deploy
+concurrency:
+  group: environment-${{ github.ref }}
   cancel-in-progress: true
   
   
