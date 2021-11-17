@@ -2,7 +2,7 @@
 set -x
 echo "Name: $1"
 echo "Version: $2"
-echo "Comment: $2"
+echo "Comment: $3"
 
 ls
 pip install ruamel.yaml                    
