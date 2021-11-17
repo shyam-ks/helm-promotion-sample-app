@@ -70,6 +70,8 @@ jobs:
           run: echo Hello, QA Deploy! ${{ github.sha }}
         - name: Package
           run: |    
+            
+            cd master           
             sh package.sh ${{ env.CHART_VERSION }}
 
   uat:
