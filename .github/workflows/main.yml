@@ -41,16 +41,9 @@ jobs:
       - name: Package
         run: |
           cd master           
-          sh package.sh sample-app ${{ env.CHART_VERSION }} 
+          sh package.sh sample-app ${{ env.CHART_VERSION }} ${{ github.event.head_commit.message }}
 
-      - name: Helm push
-        run: |
-          cd package
-          git config user.email "random@bhge.com"
-          git config user.name "weknowthe"
-          git add -A
-          git diff --quiet && git diff --staged --quiet || git commit -m "Update repo [SKIP CI]" -m "${{ github.event.head_commit.message }}"
-          git push 
+
 
   qa:
       needs: dev
