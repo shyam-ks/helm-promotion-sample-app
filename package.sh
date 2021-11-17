@@ -1,4 +1,5 @@
 #!/bin/sh
+set -x
 echo "Version: $1"
 
 ls
