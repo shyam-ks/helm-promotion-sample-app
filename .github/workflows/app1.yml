@@ -40,7 +40,11 @@ jobs:
       - name: Package
         run: |
           ls ./package
-          cd master && sh package.sh sample-app ${{ env.CHART_VERSION }} ${{ github.event.head_commit.message }}
+          if [ ! -f /package/sample-app-0.0.${{ github.run_number }}  ]; then
+             cd master && sh package.sh sample-app ${{ env.CHART_VERSION }} ${{ github.event.head_commit.message }}
+          else 
+              echo "Package exists"
+          fi 
   qa:
       # needs: dev
       runs-on: ubuntu-latest
