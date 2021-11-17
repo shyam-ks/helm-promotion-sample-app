@@ -3,7 +3,7 @@
 name: sample-app
 
 concurrency:
-  group:  App-1-${{ github.ref }}
+  group:  ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
   
 on:
@@ -28,8 +28,7 @@ jobs:
     environment: Dev
     env:      
       CHART_VERSION: 0.0.${{ github.run_number }} 
-    steps:
-      - run: echo "------------------------------------------- ${{ github.workflow }} "
+    steps:      
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.event.pull_request.head.sha }}
@@ -41,8 +40,8 @@ jobs:
       - name: Package
         run: |
           ls ./package
-          if [ ! -f ./package/sample-app-${{ env.CHART_VERSION }}.tgz  ]; then
-             cd master && sh package.sh sample-app ${{ env.CHART_VERSION }} "sample-app-${{ env.CHART_VERSION }} pushed"
+          if [ ! -f ./package/${{ github.workflow }}-${{ env.CHART_VERSION }}.tgz  ]; then
+             cd master && sh package.sh ${{ github.workflow }} ${{ env.CHART_VERSION }} "${{ github.workflow }}-${{ env.CHART_VERSION }} pushed"
           else 
               echo "Package exists"
           fi 
@@ -65,7 +64,7 @@ jobs:
             ref: 'gh-pages'
             path: 'package' 
         - name: Package
-          run: cd master && sh package.sh sample-app ${{ env.CHART_VERSION }} ${{ github.event.head_commit.message }}
+          run: cd master && sh package.sh ${{ github.workflow }} ${{ env.CHART_VERSION }} ${{ github.event.head_commit.message }}
   uat:
       needs: qa
       runs-on: ubuntu-latest
@@ -98,7 +97,7 @@ jobs:
             ref: 'gh-pages'
             path: 'package' 
         - name: Package       
-          run: cd master && sh package.sh sample-app ${{ env.CHART_VERSION }} ${{ github.event.head_commit.message }}
+          run: cd master && sh package.sh ${{ github.workflow }} ${{ env.CHART_VERSION }} ${{ github.event.head_commit.message }}
 
        
               
