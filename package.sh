@@ -1,3 +1,2 @@
 #!/bin/sh
-mkdir -p package
-cd package
+echo "The first fruit is: $1"
