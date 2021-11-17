@@ -78,7 +78,7 @@ jobs:
         - name: Package
           run: |
             cd master           
-            sh package.sh ${{ env.CHART_VERSION }} sample-app
+            sh package.sh sample-app ${{ env.CHART_VERSION }} 
 
         - name: Helm push
           run: |
@@ -94,7 +94,7 @@ jobs:
       runs-on: ubuntu-latest
       environment: UAT
       env:      
-        CHART_VERSION: 0.1.${{ github.run_number }} 
+        CHART_VERSION: 0.2.${{ github.run_number }} 
       steps:
         - name: deploy        
           run: echo Hello, QA Deploy! ${{ github.sha }}
