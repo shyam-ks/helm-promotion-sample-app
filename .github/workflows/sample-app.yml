@@ -28,8 +28,7 @@ jobs:
     environment: Dev
     env:      
       CHART_VERSION: 0.0.${{ github.run_number }} 
-    steps:     
-      - run: echo  ${{ github.event_name }} 
+    steps:      
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.event.pull_request.head.sha }}
@@ -46,10 +45,9 @@ jobs:
               echo "Package exists"
           fi 
   qa:
-      needs: dev
-      runs-on: ubuntu-latest
-      if: github.event_name == 'push'
-
+      needs: dev 
+      runs-on: ubuntu-latest     
+      if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
       environment: QA
       env:      
         CHART_VERSION: 0.1.${{ github.run_number }} 
@@ -73,8 +71,7 @@ jobs:
   uat:
       needs: qa
       runs-on: ubuntu-latest
-      if: github.event_name == 'push'
-
+       if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
       environment: UAT
       env:      
         CHART_VERSION: 0.2.${{ github.run_number }} 
