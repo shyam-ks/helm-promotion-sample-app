@@ -1,10 +1,11 @@
 #!/bin/sh
 set -x
-echo "Version: $1"
+echo "Name: $1"
+echo "Version: $2"
 
 ls
 pip install ruamel.yaml                    
-python3 ./utils/update-chart-version.py ./chart/sample-app/Chart.yaml 'version' $1
+python3 ./utils/update-chart-version.py ./chart/$1/Chart.yaml 'version' $2
 
 mkdir -p package
 cd package
