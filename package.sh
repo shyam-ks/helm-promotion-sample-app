@@ -22,7 +22,7 @@ cd package
 git config user.email "random@bhge.com"
 git config user.name "weknowthe"
 git add -A
-git diff --quiet && git diff --staged --quiet || git commit -m "Update repo [SKIP CI]" -m $3
+git diff --quiet && git diff --staged --quiet || git commit -m "Update repo [SKIP CI]" -m "$3"
 git push 
 
  
