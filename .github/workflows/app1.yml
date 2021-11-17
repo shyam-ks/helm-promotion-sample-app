@@ -3,7 +3,7 @@
 name: sample-app
 
 concurrency:
-  group:  App-1-${{ github.ref }}
+  group:  ${{ github.action }}-${{ github.ref }}
   cancel-in-progress: true
   
 on:
@@ -11,7 +11,7 @@ on:
     branches:
     - master
     paths:
-    - chart/{{ github.action }}/**    
+    - chart/${{ github.action }}/**    
 
 
   # Allows you to run this workflow manually from the Actions tab
