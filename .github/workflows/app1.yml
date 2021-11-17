@@ -11,7 +11,7 @@ on:
     branches:
     - master
     paths:
-    - chart/${{ github.action }}/**    
+    - chart/sample-app/**    
 
 
   # Allows you to run this workflow manually from the Actions tab
@@ -40,8 +40,8 @@ jobs:
       - name: Package
         run: |
           ls ./package
-          if [ ! -f ./package/sample-app-${{ env.CHART_VERSION }}.tgz  ]; then
-             cd master && sh package.sh sample-app ${{ env.CHART_VERSION }} "sample-app-${{ env.CHART_VERSION }} pushed"
+          if [ ! -f ./package/${{ github.action }}-${{ env.CHART_VERSION }}.tgz  ]; then
+             cd master && sh package.sh ${{ github.action }} ${{ env.CHART_VERSION }} "${{ github.action }}-${{ env.CHART_VERSION }} pushed"
           else 
               echo "Package exists"
           fi 
