@@ -15,3 +15,5 @@ cd ..
 cd ..
 ls
 mv master/package/* package/
+cd package
+ 
