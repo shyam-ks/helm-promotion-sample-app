@@ -11,6 +11,7 @@ cd package
 helm package ../chart/*
 helm repo index .
 
+cd ..
 mv master/package/* package/
 cd package
 git config user.email "random@bhge.com"
