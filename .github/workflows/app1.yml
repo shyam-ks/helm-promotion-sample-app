@@ -40,7 +40,7 @@ jobs:
       - name: Package
         run: cd master && sh package.sh sample-app ${{ env.CHART_VERSION }} ${{ github.event.head_commit.message }}
   qa:
-      needs: dev
+      # needs: dev
       runs-on: ubuntu-latest
       if: github.event_name == 'push'
 
@@ -59,7 +59,7 @@ jobs:
         - name: Package
           run: cd master && sh package.sh sample-app ${{ env.CHART_VERSION }} ${{ github.event.head_commit.message }}
   uat:
-      needs: qa
+      # needs: qa
       runs-on: ubuntu-latest
       if: github.event_name == 'push'
 
