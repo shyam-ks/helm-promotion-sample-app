@@ -3,7 +3,7 @@
 name: sample-app
 
 concurrency:
-  group:  ${{ github.action }}-${{ github.ref }}
+  group:  App-1-${{ github.ref }}
   cancel-in-progress: true
   
 on:
@@ -40,8 +40,8 @@ jobs:
       - name: Package
         run: |
           ls ./package
-          if [ ! -f ./package/${{ github.action }}-${{ env.CHART_VERSION }}.tgz  ]; then
-             cd master && sh package.sh ${{ github.action }} ${{ env.CHART_VERSION }} "${{ github.action }}-${{ env.CHART_VERSION }} pushed"
+          if [ ! -f ./package/sample-app-${{ env.CHART_VERSION }}.tgz  ]; then
+             cd master && sh package.sh sample-app ${{ env.CHART_VERSION }} "sample-app-${{ env.CHART_VERSION }} pushed"
           else 
               echo "Package exists"
           fi 
@@ -54,6 +54,7 @@ jobs:
       env:      
         CHART_VERSION: 0.1.${{ github.run_number }} 
       steps:
+        - run: echo "------------------------------------------- ${{ github.workflow }} "
         - uses: actions/checkout@v2
           with:
             ref: ${{ github.event.pull_request.head.sha }}
