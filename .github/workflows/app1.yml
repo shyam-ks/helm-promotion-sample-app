@@ -42,6 +42,8 @@ jobs:
   qa:
       needs: dev
       runs-on: ubuntu-latest
+      if: github.event_name != 'pull_request'
+
       environment: QA
       env:      
         CHART_VERSION: 0.1.${{ github.run_number }} 
@@ -59,6 +61,8 @@ jobs:
   uat:
       needs: qa
       runs-on: ubuntu-latest
+      if: github.event_name != 'pull_request'
+      
       environment: UAT
       env:      
         CHART_VERSION: 0.2.${{ github.run_number }} 
