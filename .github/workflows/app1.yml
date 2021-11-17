@@ -41,7 +41,7 @@ jobs:
         run: |
           ls ./package
           if [ ! -f /package/sample-app-${{ env.CHART_VERSION }}  ]; then
-             cd master && sh package.sh sample-app ${{ env.CHART_VERSION }} ${{ github.event.head_commit.message }}
+             cd master && sh package.sh sample-app ${{ env.CHART_VERSION }} "sample-app-${{ env.CHART_VERSION }} pushed"
           else 
               echo "Package exists"
           fi 
