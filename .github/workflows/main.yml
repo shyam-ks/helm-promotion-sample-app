@@ -10,6 +10,8 @@ on:
   push:
     branches:
     - master
+    paths:
+    - chart/sample-app/**    
 
 
   # Allows you to run this workflow manually from the Actions tab
