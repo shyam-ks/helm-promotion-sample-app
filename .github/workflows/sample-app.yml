@@ -83,11 +83,9 @@ jobs:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
             tag_name: ${{ github.ref }}
-            release_name: Release ${{ github.ref }}
+            release_name: Release ${{ github.workflow }}-${{ env.CHART_VERSION }}
             body: |
-              Changes in this Release
-              - First Change
-              - Second Change
+              This is open source software for web serving, reverse proxying, caching, load balancing, media streaming, and more
             draft: true
             prerelease: false 
       - uses: actions/checkout@v2
