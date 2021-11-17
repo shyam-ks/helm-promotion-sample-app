@@ -73,7 +73,7 @@ jobs:
             
             cd master
             ls
-            sh package arg1   
+            sh package   
 
   uat:
       needs: qa
