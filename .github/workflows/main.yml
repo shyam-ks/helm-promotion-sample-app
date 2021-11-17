@@ -39,9 +39,7 @@ jobs:
           path: 'package' 
 
       - name: Package
-        run: |
-          cd master           
-          sh package.sh sample-app ${{ env.CHART_VERSION }} ${{ github.event.head_commit.message }}
+        run: cd master && sh package.sh sample-app ${{ env.CHART_VERSION }} ${{ github.event.head_commit.message }}
 
 
 
@@ -64,9 +62,7 @@ jobs:
             path: 'package' 
 
         - name: Package
-          run: |
-            cd master           
-            sh package.sh sample-app ${{ env.CHART_VERSION }} ${{ github.event.head_commit.message }}
+          run: cd master && sh package.sh sample-app ${{ env.CHART_VERSION }} ${{ github.event.head_commit.message }}
       
 
   uat:
@@ -104,10 +100,8 @@ jobs:
             ref: 'gh-pages'
             path: 'package' 
 
-        - name: Package
-          run: |
-            cd master           
-            sh package.sh sample-app ${{ env.CHART_VERSION }} ${{ github.event.head_commit.message }}
+        - name: Package       
+          run: cd master && sh package.sh sample-app ${{ env.CHART_VERSION }} ${{ github.event.head_commit.message }}
 
        
               
