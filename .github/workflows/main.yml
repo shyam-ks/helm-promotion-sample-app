@@ -29,22 +29,16 @@ jobs:
     env:      
       CHART_VERSION: 0.0.${{ github.run_number }} 
     steps:
-      
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.event.pull_request.head.sha }}
-          path: 'master'     
-
+          path: 'master'
       - uses: actions/checkout@v2
         with:
           ref: 'gh-pages'
           path: 'package' 
-
       - name: Package
         run: cd master && sh package.sh sample-app ${{ env.CHART_VERSION }} ${{ github.event.head_commit.message }}
-
-
-
   qa:
       needs: dev
       runs-on: ubuntu-latest
@@ -52,31 +46,23 @@ jobs:
       env:      
         CHART_VERSION: 0.1.${{ github.run_number }} 
       steps:
-        
         - uses: actions/checkout@v2
           with:
             ref: ${{ github.event.pull_request.head.sha }}
             path: 'master'     
-
         - uses: actions/checkout@v2
           with:
             ref: 'gh-pages'
             path: 'package' 
-
         - name: Package
           run: cd master && sh package.sh sample-app ${{ env.CHART_VERSION }} ${{ github.event.head_commit.message }}
-      
-
   uat:
       needs: qa
       runs-on: ubuntu-latest
       environment: UAT
       env:      
         CHART_VERSION: 0.2.${{ github.run_number }} 
-      steps:
-        - name: deploy        
-          run: echo Hello, QA Deploy! ${{ github.sha }}
-          
+      steps:         
         - name: Create Release
           id: create_release
           uses: actions/create-release@v1
@@ -91,17 +77,14 @@ jobs:
                 - Second Change
               draft: true
               prerelease: false 
-
         - uses: actions/checkout@v2
           with:
             ref: ${{ github.event.pull_request.head.sha }}
-            path: 'master'     
-
+            path: 'master'  
         - uses: actions/checkout@v2
           with:
             ref: 'gh-pages'
             path: 'package' 
-
         - name: Package       
           run: cd master && sh package.sh sample-app ${{ env.CHART_VERSION }} ${{ github.event.head_commit.message }}
 
