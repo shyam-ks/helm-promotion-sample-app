@@ -71,7 +71,7 @@ jobs:
   uat:
       needs: qa
       runs-on: ubuntu-latest
-       if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
+      if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
       environment: UAT
       env:      
         CHART_VERSION: 0.2.${{ github.run_number }} 
