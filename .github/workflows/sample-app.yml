@@ -83,7 +83,7 @@ jobs:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
             tag_name: ${{ github.workflow }} v${{ env.CHART_VERSION }}
-            release_name: Release ${{ github.workflow }}-${{ env.CHART_VERSION }}
+            release_name: ${{ github.workflow }}-${{ env.CHART_VERSION }}
             body: |
               This is open source software for web serving, reverse proxying, caching, load balancing, media streaming, and more
             draft: false
