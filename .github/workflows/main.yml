@@ -61,6 +61,8 @@ jobs:
       needs: dev
       runs-on: ubuntu-latest
       environment: QA
+      env:      
+        CHART_VERSION: 0.1.${{ github.run_number }} 
       steps:
         - uses: actions/checkout@v2
           with:
