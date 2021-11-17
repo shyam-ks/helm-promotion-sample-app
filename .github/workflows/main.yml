@@ -123,6 +123,7 @@ jobs:
           run: cd master && sh sync_repo.sh
         - name: Move package folder
           run: |
+            ls
             mv master/package/* package/
             cd package
             git config user.email "random@bhge.com"
