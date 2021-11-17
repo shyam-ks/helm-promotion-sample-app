@@ -3,7 +3,7 @@
 name: App-2
 
 concurrency:
-  group:  App-1-${{ github.ref }}
+  group:  App-2-${{ github.ref }}
   cancel-in-progress: true
   
 on:
