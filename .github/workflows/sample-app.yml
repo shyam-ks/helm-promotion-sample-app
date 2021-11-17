@@ -18,11 +18,8 @@ on:
   workflow_dispatch:
     inputs:
       deployment-stage:
-        description: 'Deployment Stage'     
+        description: 'Deployment Stage: qa, uat'     
         required: true
-        default: 'warning'
-
-  
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:         
