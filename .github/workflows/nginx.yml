@@ -1,9 +1,9 @@
 # This is a basic workflow to help you get started with Actions
 
-name: App-2
+name: nginx
 
 concurrency:
-  group:  App-2-${{ github.ref }}
+  group:  ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
   
 on:
@@ -28,7 +28,7 @@ jobs:
     environment: Dev
     env:      
       CHART_VERSION: 0.0.${{ github.run_number }} 
-    steps:
+    steps:      
       - uses: actions/checkout@v2
         with:
           ref: ${{ github.event.pull_request.head.sha }}
@@ -38,7 +38,12 @@ jobs:
           ref: 'gh-pages'
           path: 'package' 
       - name: Package
-        run: cd master && sh package.sh nginx ${{ env.CHART_VERSION }} ${{ github.event.head_commit.message }}
+        run: |          
+          if [ ! -f ./package/${{ github.workflow }}-${{ env.CHART_VERSION }}.tgz  ]; then
+             cd master && sh package.sh ${{ github.workflow }} ${{ env.CHART_VERSION }} "${{ github.workflow }}-${{ env.CHART_VERSION }} pushed"
+          else 
+              echo "Package exists"
+          fi 
   qa:
       needs: dev
       runs-on: ubuntu-latest
@@ -48,6 +53,7 @@ jobs:
       env:      
         CHART_VERSION: 0.1.${{ github.run_number }} 
       steps:
+        
         - uses: actions/checkout@v2
           with:
             ref: ${{ github.event.pull_request.head.sha }}
@@ -57,7 +63,12 @@ jobs:
             ref: 'gh-pages'
             path: 'package' 
         - name: Package
-          run: cd master && sh package.sh nginx ${{ env.CHART_VERSION }} ${{ github.event.head_commit.message }}
+          run: |          
+            if [ ! -f ./package/${{ github.workflow }}-${{ env.CHART_VERSION }}.tgz  ]; then
+              cd master && sh package.sh ${{ github.workflow }} ${{ env.CHART_VERSION }} "${{ github.workflow }}-${{ env.CHART_VERSION }} pushed"
+            else 
+                echo "Package exists"
+            fi 
   uat:
       needs: qa
       runs-on: ubuntu-latest
@@ -90,7 +101,12 @@ jobs:
             ref: 'gh-pages'
             path: 'package' 
         - name: Package       
-          run: cd master && sh package.sh nginx ${{ env.CHART_VERSION }} ${{ github.event.head_commit.message }}
+          run: |          
+            if [ ! -f ./package/${{ github.workflow }}-${{ env.CHART_VERSION }}.tgz  ]; then
+              cd master && sh package.sh ${{ github.workflow }} ${{ env.CHART_VERSION }} "${{ github.workflow }}-${{ env.CHART_VERSION }} pushed"
+            else 
+                echo "Package exists"
+            fi 
 
        
               
