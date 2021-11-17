@@ -64,16 +64,20 @@ jobs:
       env:      
         CHART_VERSION: 0.1.${{ github.run_number }} 
       steps:
-        - uses: actions/checkout@v2
-          with:
-            ref: 'gh-pages'
-            path: 'package'         
+        
         - uses: actions/checkout@v2
           with:
             ref: ${{ github.event.pull_request.head.sha }}
-            path: 'master'        
+            path: 'master'     
+
+        - uses: actions/checkout@v2
+          with:
+            ref: 'gh-pages'
+            path: 'package' 
+
         - name: deploy        
           run: echo Hello, QA Deploy! ${{ github.sha }}
+          
         - name: Package
           run: |
             cd master           
