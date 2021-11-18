@@ -29,9 +29,8 @@ jobs:
   dev:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     environment: Dev
-    concurrency: Dev
-
     env:      
       CHART_VERSION: 0.0.${{ github.run_number }} 
     steps:      
@@ -48,10 +47,9 @@ jobs:
   qa:
     needs: dev
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
-
-    environment: QA
-    concurrency: QA
+    environment: QA    
     env:      
       CHART_VERSION: 0.1.${{ github.run_number }} 
     steps:
@@ -69,8 +67,8 @@ jobs:
   uat:
     needs: qa
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     if: github.event_name == 'push' || github.event_name == 'workflow_dispatch'
-
     environment: UAT
     env:      
       CHART_VERSION: 0.2.${{ github.run_number }} 
