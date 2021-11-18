@@ -57,12 +57,7 @@ jobs:
           ref: 'gh-pages'
           path: 'package' 
       - name: Package
-        run: |          
-          if [ ! -f ./package/${{ github.workflow }}-${{ env.CHART_VERSION }}.tgz  ]; then
-            cd master && sh package.sh ${{ github.workflow }} ${{ env.CHART_VERSION }} "${{ github.workflow }}-${{ env.CHART_VERSION }} pushed"
-          else 
-              echo "Package exists"
-          fi 
+        run: cd master && sh package.sh ${{ github.workflow }} ${{ env.CHART_VERSION }} "${{ github.workflow }}-${{ env.CHART_VERSION }} pushed"
   uat:
     needs: qa
     runs-on: ubuntu-latest
@@ -92,12 +87,7 @@ jobs:
           ref: 'gh-pages'
           path: 'package' 
       - name: Package       
-        run: |          
-          if [ ! -f ./package/${{ github.workflow }}-${{ env.CHART_VERSION }}.tgz  ]; then
-            cd master && sh package.sh ${{ github.workflow }} ${{ env.CHART_VERSION }} "${{ github.workflow }}-${{ env.CHART_VERSION }} pushed"
-          else 
-              echo "Package exists"
-          fi 
+        run: cd master && sh package.sh ${{ github.workflow }} ${{ env.CHART_VERSION }} "${{ github.workflow }}-${{ env.CHART_VERSION }} pushed"
 
        
               
