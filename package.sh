@@ -29,6 +29,7 @@ if [ ! -f ../package/$1-$3.tgz  ]; then
     git config user.name "helm"
     git add -A
     git diff --quiet && git diff --staged --quiet || git commit -m "Update repo [SKIP CI]" -m "$4"
+    git pull
     git push 
 
 else 
