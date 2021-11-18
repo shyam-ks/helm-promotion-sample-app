@@ -18,7 +18,7 @@ else:
 stream = open(fname, 'r')
 yaml = ruamel.yaml.YAML()  # defaults to round-trip if no parameters given
 code = yaml.load(stream)
-code[imageName]['image']['tag'] = tag
+code['image']['tag'] = tag
 yaml.dump(code, sys.stdout)
 with open(fname, "w") as f:
     yaml.dump(code, f)
