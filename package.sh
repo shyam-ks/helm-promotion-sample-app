@@ -9,8 +9,8 @@ if [ ! -f ../package/$1-$2.tgz  ]; then
 
     ls
     pip install ruamel.yaml                    
-    python3 ./utils/update-chart-version.py ./chart/$1/Chart.yaml 'version' $2
-    python3 ./utils/update-image-tag-helm.py ./chart/$1/values.yaml $4                 
+    python3 ./utils/update-chart-version.py ./charts/$1/Chart.yaml 'version' $2
+    python3 ./utils/update-image-tag-helm.py ./charts/$1/values.yaml $4                 
 
     mkdir -p package
     cd package

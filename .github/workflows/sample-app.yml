@@ -11,7 +11,7 @@ on:
     branches:
     - master
     paths:
-    - chart/sample-app/**    
+    - charts/sample-app/**    
 
 
   # Allows you to run this workflow manually from the Actions tab
