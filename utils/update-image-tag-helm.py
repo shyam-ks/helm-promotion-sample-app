@@ -23,12 +23,4 @@ yaml.dump(code, sys.stdout)
 with open(fname, "w") as f:
     yaml.dump(code, f)
 
-
-# paramLength = len(code['spec']['source']['helm']['parameters'])
-# paramName = imageName + ".image.tag"
-
-# for x in range(paramLength):
-#  for key, value in code['spec']['source']['helm']['parameters'][x].items():
-#     if code['spec']['source']['helm']['parameters'][x]['name'] == paramName:
-#         code['spec']['source']['helm']['parameters'][x]['value'] = tag
     
