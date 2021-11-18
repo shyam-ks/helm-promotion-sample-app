@@ -16,7 +16,7 @@ if [ ! -f ../package/$1-$3.tgz  ]; then
 
     mkdir -p package
     cd package
-    helm package ../chart/$1
+    helm package ../charts/$1
     helm repo index .
 
     cd ..
