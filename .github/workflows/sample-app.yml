@@ -16,6 +16,10 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      image_tag: 
+        description: Image tag
+        default: tag
   
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -38,7 +42,7 @@ jobs:
           ref: 'gh-pages'
           path: 'package' 
       - name: Package
-        run: cd master && sh package.sh ${{ github.workflow }} ${{ env.CHART_VERSION }} "${{ github.workflow }}-${{ env.CHART_VERSION }} pushed"                  
+        run: cd master && sh package.sh ${{ github.workflow }} ${{ env.CHART_VERSION }} "${{ github.workflow }}-${{ env.CHART_VERSION }} pushed" ${{ github.event.inputs.image_tag}}                 
   qa:
     needs: dev 
     runs-on: ubuntu-latest     
@@ -57,7 +61,7 @@ jobs:
           ref: 'gh-pages'
           path: 'package' 
       - name: Package
-        run: cd master && sh package.sh ${{ github.workflow }} ${{ env.CHART_VERSION }} "${{ github.workflow }}-${{ env.CHART_VERSION }} pushed"
+        run: cd master && sh package.sh ${{ github.workflow }} ${{ env.CHART_VERSION }} "${{ github.workflow }}-${{ env.CHART_VERSION }} pushed" ${{ github.event.inputs.image_tag}}  
   uat:
     needs: qa
     runs-on: ubuntu-latest
@@ -87,7 +91,7 @@ jobs:
           ref: 'gh-pages'
           path: 'package' 
       - name: Package       
-        run: cd master && sh package.sh ${{ github.workflow }} ${{ env.CHART_VERSION }} "${{ github.workflow }}-${{ env.CHART_VERSION }} pushed"
+        run: cd master && sh package.sh ${{ github.workflow }} ${{ env.CHART_VERSION }} "${{ github.workflow }}-${{ env.CHART_VERSION }} pushed" ${{ github.event.inputs.image_tag}}  
 
        
               
