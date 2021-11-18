@@ -2,11 +2,9 @@ import sys
 import ruamel.yaml
 
 print ("File name: %s" % (sys.argv[1]))
-print ("Image Name: %s" % (sys.argv[2]))
-print ("Tag: %s" % (sys.argv[3]))
+print ("Tag: %s" % (sys.argv[2]))
 fname = sys.argv[1]
-imageName = str(sys.argv[2])
-tag = str(sys.argv[3])
+tag = str(sys.argv[2])
 
 # Check if file exists
 from pathlib import Path
