@@ -1,5 +1,6 @@
 #!/bin/sh
 set -x
+set -e
 echo "Name: $1"
 echo "Tag: $2"
 echo "Version: $3"
